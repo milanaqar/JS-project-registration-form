@@ -1,0 +1,71 @@
+body
+{
+    background: linear-gradient(135deg, #77A1D8 0%, #D6B9C9 100%);
+    background-attachment: fixed;
+    font-family: "Inter", Arial, sans-serif;
+    color:#442624;
+}
+
+.add, .stats-all
+{
+    background: #fafbfd;
+}
+
+#addBtn
+{
+    background: #442624;
+    border: none;
+}
+
+#addBtn:hover {
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+.add, .stats-all {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.stats-card, .form-control {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #442624;
+    backdrop-filter: blur(10px);
+}
+
+.error-message
+{
+    color: #b65e8e;
+}
+
+.no-guests-msg i {
+    font-size: 48px;      
+    color: #6c757d;       
+    display: block;       
+    margin-bottom: 8px;   
+}
+
+.no-guests-msg {
+    color: #6c757d;       
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#totalGuests
+{
+    color: black;
+}
+
+#adultCount
+{
+    color:#b65e8e;
+}
+
+#minorCount
+{
+    color: #568cd2;
+}
