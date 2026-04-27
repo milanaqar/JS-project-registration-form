@@ -11,6 +11,14 @@
 </head>
 
 <body>
+    <!--Sakura branch -->
+<div class="sakura-branch sakura-left"></div>
+<div class="sakura-branch sakura-right"></div>
+
+
+
+    <!--For falling petals-->
+    <div id="sakura-container"></div>
 
     <!-- Form -->
     <div class="container py-5 my-4">
@@ -286,6 +294,37 @@
 
     </script>
 
+<!-- Falling petals-->
+<script>
+function createPetal() {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+
+    // random horizontal start
+    petal.style.left = Math.random() * 100 + "vw";
+
+    // random animation duration
+    const duration = 4 + Math.random() * 4;
+    petal.style.animationDuration = duration + "s";
+
+    // random size
+    const size = 10 + Math.random() * 10;
+    petal.style.width = size + "px";
+    petal.style.height = size * 1.5 + "px";
+
+    document.getElementById("sakura-container").appendChild(petal);
+
+    // remove after animation
+    setTimeout(() => {
+        petal.remove();
+    }, duration * 1000);
+}
+
+// create petals continuously
+setInterval(createPetal, 300);
+petal.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+
+</script>
 
 
 </body>
