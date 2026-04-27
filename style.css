@@ -39,7 +39,7 @@ body
 
 .error-message
 {
-    color: #b65e8e;
+    color: #9e0a5b;
 }
 
 .no-guests-msg i {
@@ -68,4 +68,20 @@ body
 #minorCount
 {
     color: #568cd2;
+}
+
+.delete, .edit
+{
+    cursor: pointer;
+
+}
+
+.delete:hover
+{
+    color:#9e0a5b;
+}
+
+.edit:hover
+{
+    color:#3072c8;
 }

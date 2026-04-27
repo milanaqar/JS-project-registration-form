@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="icon" type="svg" href="journal-bookmark.svg">
     <link rel="stylesheet" href="style.css">
     <title>Guest Log</title>
 </head>
@@ -51,7 +52,7 @@
             <h3 class="mb-3">Guest List</h3>
 
             <p id="noGuests" class="no-guests-msg text-center">
-                <i class="bi bi-person"></i> No guests registered
+               <i class="bi bi-people"></i> No guests registered
             </p>
 
             <ul id="showList" class="list-group mb-4 list-unstyled"></ul>
@@ -151,17 +152,20 @@
             let roleInput = capitalize(document.getElementById("role").value);
 
             // Validation
-            if (nameInput === "") {
+            if (nameInput === "") 
+            {
                 document.getElementById("errorName").textContent = "Please fill in all fields.";
                 hasError = true;
             }
 
-            if (isNaN(ageInput) || ageInput.trim() === "") {
+            if (isNaN(ageInput) || ageInput.trim() === "") 
+            {
                 document.getElementById("errorAge").textContent = "Age must be a number";
                 hasError = true;
             }
 
-            if (roleInput === "") {
+            if (roleInput === "") 
+            {
                 document.getElementById("errorRole").textContent = "Please fill in all fields.";
                 hasError = true;
             }
@@ -169,7 +173,8 @@
             if (hasError) return;
 
             // Create guest object
-            let guest = {
+            let guest = 
+            {
                 name: nameInput,
                 age: Number(ageInput),
                 role: roleInput,
@@ -179,14 +184,18 @@
             guests.push(guest);
             displayGuests();
 
-            // Clear fields
+            // Store the geusts info
+            localStorage.setItem("guests", JSON.stringify(guests));
+
+            // Empty fields
             document.getElementById("name").value = "";
             document.getElementById("age").value = "";
             document.getElementById("role").value = "";
         }
         
         // Show inputs
-        function displayGuests() {
+        function displayGuests() 
+        {
 
             let showList = document.getElementById("showList");
             let adultCount = 0;
@@ -195,24 +204,42 @@
             showList.innerHTML = "";
 
             // Show or hide "No guests registered"
-            if (guests.length === 0) {
+            if (guests.length === 0) 
+            {
                 document.getElementById("noGuests").style.display = "block";
             } else {
                 document.getElementById("noGuests").style.display = "none";
             }
+        
 
-            guests.forEach(function(guest) {
+
+            guests.forEach(function(guest,index) 
+            {
 
                 let listItem = document.createElement("li");
-                listItem.textContent =
-                    `${guest.name} - Age: ${guest.age}, Role: ${guest.role}, ` +
-                    (guest.isAdult ? "Adult" : "Minor");
+
+                 listItem.innerHTML = 
+                `
+                <div class="d-flex justify-content-between align-items-center w-100"
+                <span>
+                 ${guest.name} - Age: ${guest.age}, Role: ${guest.role}, ${guest.isAdult ? "Adult" : "Minor"}
+                </span>
+
+                 <span>
+                 <i class="delete bi bi-trash me-3 fs-5" onclick="deleteGuest(${index})"></i>
+                 <i class="edit bi bi-pencil-square me-3 fs-5" onclick="editGuest(${index})"></i>
+                 </span>
+                </div>
+                `;
+
 
                 showList.appendChild(listItem);
 
-                if (guest.isAdult) {
+                if (guest.isAdult) 
+                {
                     adultCount++;
-                } else {
+                } else 
+                {
                     minorCount++;
                 }
             });
@@ -220,9 +247,42 @@
             document.getElementById("totalGuests").textContent = guests.length;
             document.getElementById("adultCount").textContent = adultCount;
             document.getElementById("minorCount").textContent = minorCount;
+        } 
+         // Delete Guesst button
+        function deleteGuest(index)
+        {
+            guests.splice(index,1);
+            localStorage.setItem("guests",JSON.stringify(guests));
+            displayGuests();
+
         }
 
+        // Edit Guest button
+        function editGuest(index)
+        {
+            let g = guests[index];
+
+            document.getElementById("name").value = g.name;
+            document.getElementById("age").value = g.age;
+            document.getElementById("role").value = g.role;
+
+            guests.splice(index,1);
+            localStorage.setItem("guests", JSON.stringify(guests));
+            displayGuests();
+        }
+
+
         let guests = [];
+
+        // Reload saved geusts
+        let saved = localStorage.getItem("guests");
+
+        if (saved)
+        {
+            guests = JSON.parse(saved);
+            displayGuests();
+        }
+         
 
     </script>
 
