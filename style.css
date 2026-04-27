@@ -148,13 +148,17 @@ body
 
 /* Mobile adjustments */
 @media (max-width: 600px) {
-    .sakura-left {
-        display: none; /* hide left branch on phones */
-    }
+    /* Hide sakura branches */
+    .sakura-branch,
+    .sakura-left,
     .sakura-right {
-        width: 150px; /* smaller on phones */
-        height: 150px;
-        opacity: 0.8;
+        display: none;
+    }
+
+    /* Hide falling petals */
+    #sakura-container {
+        display: none;
     }
 }
+
 
