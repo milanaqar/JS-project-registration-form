@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="icon" type="svg" href="journal-bookmark.svg">
     <link rel="stylesheet" href="style.css">
-    <title>Guest Log</title>
+    <title>Guest Registration</title>
 </head>
 
 <body>
     <!--Sakura branch -->
 <div class="sakura-branch sakura-left"></div>
 <div class="sakura-branch sakura-right"></div>
-
-
 
     <!--For falling petals-->
     <div id="sakura-container"></div>
@@ -112,7 +110,7 @@
                 .join(" ");
         }
 
-        document.getElementById("addBtn").addEventListener("click", function() {
+        document.getElementById("addBtn").addEventListener("click", function() {                        // Project required: Button Event Listener
             addGuest();
         });
 
@@ -147,7 +145,7 @@
         }
         
         // Add Geust, Validation, empty fields
-        function addGuest() {
+        function addGuest() {                                                                           // Project required:  Add Guest Function
 
             let hasError = false;
 
@@ -160,13 +158,13 @@
             let roleInput = capitalize(document.getElementById("role").value);
 
             // Validation
-            if (nameInput === "") 
+            if (nameInput === "")                                                                        // Project required:  Validation & If/Else
             {
                 document.getElementById("errorName").textContent = "Please fill in all fields.";
                 hasError = true;
             }
 
-            if (isNaN(ageInput) || ageInput.trim() === "") 
+            if (isNaN(ageInput) || ageInput.trim() === "")                                              // Project required:  isNaN
             {
                 document.getElementById("errorAge").textContent = "Age must be a number";
                 hasError = true;
@@ -180,13 +178,13 @@
 
             if (hasError) return;
 
-            // Create guest object
-            let guest = 
+            // guest object
+            let guest =                                                                              // Project required: Guest Object 
             {
                 name: nameInput,
                 age: Number(ageInput),
                 role: roleInput,
-                isAdult: Number(ageInput) >= 18
+                isAdult: Number(ageInput) >= 18                                                      // Project required: Adult or Minor 
             };
 
             guests.push(guest);
@@ -202,7 +200,7 @@
         }
         
         // Show inputs
-        function displayGuests() 
+        function displayGuests()                                                                     // Project required:  Display Function   
         {
 
             let showList = document.getElementById("showList");
@@ -221,7 +219,7 @@
         
 
 
-            guests.forEach(function(guest,index) 
+            guests.forEach(function(guest,index)                                                     // Project required: foreach loop
             {
 
                 let listItem = document.createElement("li");
@@ -239,7 +237,6 @@
                  </span>
                 </div>
                 `;
-
 
                 showList.appendChild(listItem);
 
@@ -280,7 +277,7 @@
         }
 
 
-        let guests = [];
+        let guests = [];                                                                // Project required: Array Guest
 
         // Reload saved geusts
         let saved = localStorage.getItem("guests");

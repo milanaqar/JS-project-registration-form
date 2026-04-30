@@ -147,16 +147,11 @@ body
 }
 
 /* Mobile adjustments */
-@media (max-width: 600px) {
+@media (max-width: 1400px) {
     /* Hide sakura branches */
     .sakura-branch,
     .sakura-left,
     .sakura-right {
-        display: none;
-    }
-
-    /* Hide falling petals */
-    #sakura-container {
         display: none;
     }
 }
